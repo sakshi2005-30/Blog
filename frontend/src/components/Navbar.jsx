@@ -2,9 +2,10 @@ import {Search} from "lucide-react"
 import { useState } from "react";
 import Login from "../pages/Login"
 import Register from "../pages/Register"
+import { useAuthContext } from "../context/AuthContext";
 const Navbar = () => {
-  const [loginOpen,setLoginOpen]=useState(false);
-  const [registerOpen,setRegisterOpen]=useState(false);
+    const {setRegisterOpen,setLoginOpen}=useAuthContext();
+ 
   return (
     <div className="fixed top-0 left-0 w-full h-16 z-50 bg-primary-dull    border border-primary/30">
       <div className="max-w-[95%] mx-auto  h-16  flex justify-between items-center">
@@ -45,19 +46,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-center items-center mt-16">
-        {loginOpen ? (
-          <div>
-            <Login />
-          </div>
-        ) : (
-          registerOpen && (
-            <div>
-              <Register />
-            </div>
-          )
-        )}
-      </div>
+     
     </div>
   );
 }

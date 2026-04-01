@@ -4,6 +4,8 @@ export const AuthContext=createContext();
 export const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null);
     const [getBlogs,setGetBlogs]=useState([]);
+      const [loginOpen, setLoginOpen] = useState(false);
+      const [registerOpen, setRegisterOpen] = useState(false);
     useEffect(()=>{
         const fetchUser=async()=>{
             try{
@@ -17,8 +19,8 @@ export const AuthProvider = ({children}) => {
         }
         fetchUser();
         
-    },[user])
-    const value={user,setUser};
+    },[])
+    const value={user,setUser,registerOpen,setRegisterOpen,loginOpen,setLoginOpen};
   return (
    <AuthContext.Provider value={value}>
     {children}
