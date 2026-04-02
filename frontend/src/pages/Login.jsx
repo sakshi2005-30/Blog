@@ -1,22 +1,30 @@
-import {  useState } from "react";
-import { User, Mail, Lock } from "lucide-react";
+import {  useState,useEffect } from "react";
+import {  Mail, Lock } from "lucide-react";
 import { useAuthContext } from "../context/AuthContext";
 import { loginUser } from "../services/authApi";
 const Login = () => {
-  const { setRegisterOpen, setLoginOpen, setUser } = useAuthContext();
+  const { setRegisterOpen, setLoginOpen, setUser ,navigate,user} = useAuthContext();
  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  console.log("user login:",user);
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const result = await loginUser({  email, password });
+      console.log("type of res:",typeof result)
       console.log("res:", result);
-     
+    
+      const userData = result?.data;
+
+      setUser(userData); 
+      setLoginOpen(false); 
+      navigate("/");     
+    
       setEmail("");
       setPassword("");
-      setUser(result.data._id);
-      setLoginOpen(false);
+       setLoginOpen(false);
     } catch (error) {
       console.log("error in register", error);
     }

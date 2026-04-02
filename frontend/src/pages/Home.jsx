@@ -8,6 +8,7 @@ const Home = () => {
   return (
     <div className="mt-16 ">
       <div className="flex justify-center items-center my-16">
+        
         {loginOpen ? (
           <div>
             <Login  />

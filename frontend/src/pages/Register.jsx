@@ -12,10 +12,11 @@ const Register = () => {
     try{
       const result=await registerUser({name,email,password});
       console.log("res:",result);
+      setUser(result?.data?.[0]);
       setName("");
       setEmail("");
       setPassword("");
-      setUser(result.data._id);
+      
       setRegisterOpen(false)
 
     }
