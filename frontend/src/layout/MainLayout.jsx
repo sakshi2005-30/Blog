@@ -12,7 +12,7 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar className=" bg-primary-dull min-h-screen" />
-      {user && <Outlet />}
+      {user && <Outlet  />}
 
       <div className="flex justify-center items-center my-16">
         {loginOpen ? (

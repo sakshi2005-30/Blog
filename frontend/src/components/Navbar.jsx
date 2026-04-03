@@ -4,15 +4,20 @@ import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 const Navbar = () => {
   const [profileOpen,setProfileOpen]=useState(false);
-  
+
     const {setRegisterOpen,setLoginOpen,user,navigate,logoutUser,setUser}=useAuthContext();
-    console.log("nav user:",user);
-    console.log("name:",user?.name)
- const username = user?.userExists?.name
-   ?.split(" ")
-   .map((word) => word[0])
-   .join("")
-   .toUpperCase();
+   // console.log("nav user:",user);
+    //console.log("name:",user?.name)
+    let username;
+    if(user){
+         username = user?.name
+          ?.split(" ")
+          .map((word) => word[0])
+          .join("")
+          .toUpperCase();
+       // console.log("username", username);
+    }
+ 
   return (
     <div className="fixed top-0 left-0 w-full h-16 z-50 bg-primary-dull border border-primary/30">
       <div className="max-w-[95%] mx-auto  h-16  flex justify-between items-center">
@@ -51,7 +56,7 @@ const Navbar = () => {
             </div>
             <div
               className="h-8 w-8 bg-primary text-white  flex justify-center items-center rounded-full cursor-pointer"
-              onClick={() => setProfileOpen(true)}
+              onClick={() => setProfileOpen(prev=>!prev)}
             >
               <p className="font-medium"> {username}</p>
 

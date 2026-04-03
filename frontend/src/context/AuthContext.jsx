@@ -16,8 +16,8 @@ export const AuthProvider = ({children}) => {
         const fetchUser=async()=>{
             try{
                 const data=await me();
-                setUser(data?.data?.[0]);
-                console.log("user data:",data.data);
+                setUser(data?.data);
+                //console.log("user data:",data.data);
             }
             catch(err){
                 console.log("error in setuser",err);

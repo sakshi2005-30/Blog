@@ -14,9 +14,9 @@ const Login = () => {
     try {
       const result = await loginUser({  email, password });
       console.log("type of res:",typeof result)
-      console.log("res:", result);
+      console.log("res:", result?.data?.userExists);
     
-      const userData = result?.data;
+      const userData = result?.data?.userExists;
 
       setUser(userData); 
       setLoginOpen(false); 
