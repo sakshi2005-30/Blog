@@ -47,7 +47,7 @@ const getSingleBlog = async (req, res, next) => {
     try{
         const id=req.params.id;
        
-        const blog=await Blog.findOne({_id:id});
+        const blog=await Blog.findOne({_id:id}).populate("author");
         res.status(200).json(blog);
     }
     catch(error){

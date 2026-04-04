@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { getAllBlogs } from "../services/blogApi";
+import { useAuthContext } from '../context/AuthContext';
 const DisplayBlogs = () => {
      const [blogs, setBlogs] = useState([]);
+     const {navigate}=useAuthContext();
      useEffect(() => {
        const fetchBlogs = async () => {
          try {
@@ -31,13 +33,15 @@ const DisplayBlogs = () => {
           blogs.map((item) => (
             <div
               key={item._id}
-              className="shadow-md px-6 py-4 rounded-xl bg-white"
+              className="shadow-md  cursor-pointer px-6 py-4 rounded-xl bg-white"
+              onClick={()=>navigate(`/blog/${item._id}`)}
             >
-              <div>
+              <div className="flex flex-col gap-2 ">
+                <p className="px-4 py-1 rounded-2xl bg-primary-dull text-primary w-24 flex justify-center items-center font-medium text-sm border border-primary">{item.category}</p>
                 <img
                   src={item.image.url}
                   alt=""
-                  className=" h-50 w-full object-fill rounded-xl"
+                  className=" h-50 border border-primary-dull bg-primary-dull px-4 py-4 w-full object-fill rounded-xl"
                 />
               </div>
               <div className="flex flex-col gap-2">
